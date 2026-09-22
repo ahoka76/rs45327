@@ -24,22 +24,17 @@ def main():
     # 2. Download the uncompressed tar file from Hugging Face Hub
     print("\n📦 Step 1: Downloading the tar archive from Hugging Face...")
     
-    # Automatically reads the token from the environment variable if the repo is Private
-    hf_token = os.getenv("HF_TOKEN")
-    
     try:
         downloaded_path = hf_hub_download(
             repo_id=REPO_ID,
             filename=FILENAME,
             repo_type="model",
-            token=hf_token
         )
         print(f"✅ Download completed successfully!")
         print(f"   Cached path: {downloaded_path}")
         
     except Exception as e:
         print(f"❌ Error: Failed to download artifacts from Hugging Face Hub.")
-        print(f"   If the repository is private, please ensure 'HF_TOKEN' is set correctly.")
         print(f"   Details: {e}")
         sys.exit(1)
 
